@@ -45,13 +45,13 @@
     .gallery {
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 15px;
       justify-content: center;
     }
 
     .gallery img {
-      width: 280px;
-      height: 200px;
+      width: 240px;
+      height: 160px;
       object-fit: cover;
       border-radius: 12px;
       cursor: pointer;
@@ -62,7 +62,6 @@
       transform: scale(1.03);
     }
 
-    /* Lightbox */
     .lightbox {
       display: none;
       position: fixed;
@@ -79,10 +78,6 @@
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
-    }
-
-    .lightbox:target {
-      display: flex;
     }
 
     .contact {
@@ -102,18 +97,6 @@
       padding: 15px;
     }
 
-    @media (max-width: 768px) {
-      .gallery img {
-        width: 45%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .gallery img {
-        width: 100%;
-      }
-    }
-
     .services-list {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -128,6 +111,20 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       list-style: none;
     }
+
+    @media (max-width: 768px) {
+      .gallery img {
+        width: 180px;
+        height: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery img {
+        width: 140px;
+        height: 100px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -141,24 +138,20 @@
   <div class="section">
     <h2>Our Work</h2>
     <div class="gallery">
-      <a href="#img1"><img src="IMG_2094.jpeg" alt="Clean Kitchen"></a>
-      <a href="#img2"><img src="IMG_2095.jpeg" alt="Sink Close-Up"></a>
-      <a href="#img3"><img src="IMG_2112.jpeg" alt="Toilet Base"></a>
-      <a href="#img4"><img src="IMG_2108.jpeg" alt="Toilet Shelf Area"></a>
-      <a href="#img5"><img src="IMG_2098.jpeg" alt="Stove Area"></a>
-      <a href="#img6"><img src="IMG_6681.jpeg" alt="Fridge & Counter"></a>
+      <img src="IMG_2094.jpeg" alt="Clean Kitchen">
+      <img src="IMG_2095.jpeg" alt="Sink Close-Up">
+      <img src="IMG_2112.jpeg" alt="Toilet Base">
+      <img src="IMG_2108.jpeg" alt="Toilet Shelf Area">
+      <img src="IMG_2098.jpeg" alt="Stove Area">
+      <img src="IMG_6681.jpeg" alt="Fridge & Counter">
     </div>
   </div>
 
-  <!-- Lightboxes -->
-  <div id="img1" class="lightbox"><a href="#"><img src="IMG_2094.jpeg" alt=""></a></div>
-  <div id="img2" class="lightbox"><a href="#"><img src="IMG_2095.jpeg" alt=""></a></div>
-  <div id="img3" class="lightbox"><a href="#"><img src="IMG_2112.jpeg" alt=""></a></div>
-  <div id="img4" class="lightbox"><a href="#"><img src="IMG_2108.jpeg" alt=""></a></div>
-  <div id="img5" class="lightbox"><a href="#"><img src="IMG_2098.jpeg" alt=""></a></div>
-  <div id="img6" class="lightbox"><a href="#"><img src="IMG_6681.jpeg" alt=""></a></div>
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="hideLightbox()">
+    <img id="lightbox-img" src="" alt="Full Image">
+  </div>
 
-  <!-- Services -->
   <div class="section">
     <h2>Services We Offer</h2>
     <ul class="services-list">
@@ -184,6 +177,35 @@
   <footer>
     &copy; 2025 Magically Maid. All rights reserved.
   </footer>
+
+  <script>
+    const galleryImages = document.querySelectorAll(".gallery img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    galleryImages.forEach(img => {
+      if (isTouchDevice) {
+        img.addEventListener("click", () => {
+          lightbox.style.display = "flex";
+          lightboxImg.src = img.src;
+        });
+      } else {
+        img.addEventListener("mouseenter", () => {
+          lightbox.style.display = "flex";
+          lightboxImg.src = img.src;
+        });
+        img.addEventListener("mouseleave", () => {
+          lightbox.style.display = "none";
+        });
+      }
+    });
+
+    function hideLightbox() {
+      lightbox.style.display = "none";
+    }
+  </script>
 
 </body>
 </html>
