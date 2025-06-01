@@ -12,12 +12,14 @@
       background: #f9f9f9;
       color: #333;
     }
+
     header {
       background: #8e44ad;
       color: white;
       padding: 20px;
       text-align: center;
     }
+
     header img {
       max-width: 180px;
       display: block;
@@ -27,57 +29,66 @@
       border-radius: 10px;
       background-color: white;
     }
-    .hero {
-      text-align: center;
-      padding: 30px 10px;
-    }
+
     .section {
       padding: 40px 20px;
       max-width: 1000px;
       margin: auto;
     }
+
     .section h2 {
       color: #8e44ad;
+      text-align: center;
+      margin-bottom: 30px;
     }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-    }
-    .gallery img {
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      border-radius: 10px;
-      object-fit: contain;
-    }
-    .gallery {
       justify-content: center;
     }
+
+    .gallery img {
+      width: 280px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
     .contact {
       background: #eee;
-      padding: 20px;
+      padding: 40px 20px;
       text-align: center;
     }
+
+    .contact h2 {
+      color: #8e44ad;
+    }
+
     footer {
       text-align: center;
       background: #8e44ad;
       color: white;
-      padding: 10px;
+      padding: 15px;
     }
+
     @media (max-width: 768px) {
       .gallery img {
-        max-width: 45%;
+        width: 45%;
       }
     }
+
     @media (max-width: 480px) {
       .gallery img {
-        max-width: 100%;
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="newShareSaveImage.png" alt="Magically Maid Logo">
     <h1>Magically Maid</h1>
@@ -89,9 +100,10 @@
     <div class="gallery">
       <img src="IMG_2094.jpeg" alt="Clean Kitchen">
       <img src="IMG_2095.jpeg" alt="Sink Close-Up">
-      <img src="IMG_2098.jpeg" alt="Stove Area">
-      <img src="IMG_2108.jpeg" alt="Toilet Shelf Area">
       <img src="IMG_2112.jpeg" alt="Toilet Base">
+      <!-- Bottom row: similar in size -->
+      <img src="IMG_2108.jpeg" alt="Toilet Shelf Area">
+      <img src="IMG_2098.jpeg" alt="Stove Area">
       <img src="IMG_6681.jpeg" alt="Fridge & Counter">
     </div>
   </div>
@@ -105,5 +117,6 @@
   <footer>
     &copy; 2025 Magically Maid. All rights reserved.
   </footer>
+
 </body>
 </html>
