@@ -62,22 +62,41 @@
       transform: scale(1.03);
     }
 
+    /* Modal Lightbox */
     .lightbox {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.6);
       justify-content: center;
       align-items: center;
-      z-index: 999;
+      z-index: 1000;
+    }
+
+    .lightbox-content {
+      position: relative;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      max-width: 640px;
+      max-height: 90%;
     }
 
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 100%;
+      height: auto;
       border-radius: 8px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 24px;
+      color: #888;
+      cursor: pointer;
     }
 
     .contact {
@@ -147,9 +166,12 @@
     </div>
   </div>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="hideLightbox()">
-    <img id="lightbox-img" src="" alt="Full Image">
+  <!-- Modal Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <span class="close-btn" onclick="closeLightbox()">&times;</span>
+      <img id="lightbox-img" src="" alt="Expanded View">
+    </div>
   </div>
 
   <div class="section">
@@ -179,32 +201,28 @@
   </footer>
 
   <script>
-    const galleryImages = document.querySelectorAll(".gallery img");
     const lightbox = document.getElementById("lightbox");
     const lightboxImg = document.getElementById("lightbox-img");
+    const galleryImgs = document.querySelectorAll(".gallery img");
 
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-    galleryImages.forEach(img => {
-      if (isTouchDevice) {
-        img.addEventListener("click", () => {
-          lightbox.style.display = "flex";
-          lightboxImg.src = img.src;
-        });
-      } else {
-        img.addEventListener("mouseenter", () => {
-          lightbox.style.display = "flex";
-          lightboxImg.src = img.src;
-        });
-        img.addEventListener("mouseleave", () => {
-          lightbox.style.display = "none";
-        });
-      }
+    galleryImgs.forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = "flex";
+      });
     });
 
-    function hideLightbox() {
+    function closeLightbox() {
       lightbox.style.display = "none";
+      lightboxImg.src = "";
     }
+
+    // Close on outside click
+    window.addEventListener("click", function(e) {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
   </script>
 
 </body>
